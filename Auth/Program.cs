@@ -7,6 +7,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpClient("ServiceLayer", c =>
+{
+    c.BaseAddress = new Uri(builder.Configuration["ServiceUri:ServiceLayer"]);
+});
+
+// builder.Services.AddScoped<>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
