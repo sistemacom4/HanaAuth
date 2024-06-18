@@ -20,8 +20,8 @@
 
     <ItemGroup>
       <Folder Include="Src\Controllers\" />
-      <Folder Include="Src\Entities\" />
-      <Folder Include="Src\Models\" />
+      <Folder Include="Src\Entities\Employee\" />
+      <Folder Include="Src\Models\Api\" />
       <Folder Include="Src\Repositories\" />
     </ItemGroup>
 
