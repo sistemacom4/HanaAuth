@@ -1,3 +1,6 @@
+using Auth.Services;
+using Auth.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,7 +15,7 @@ builder.Services.AddHttpClient("ServiceLayer", c =>
     c.BaseAddress = new Uri(builder.Configuration["ServiceUri:ServiceLayer"]);
 });
 
-// builder.Services.AddScoped<>();
+builder.Services.AddScoped<ISapService, SapService>();
 
 var app = builder.Build();
 

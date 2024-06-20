@@ -1,3 +1,5 @@
+using Auth.Domain.Models.Api;
+
 namespace Auth.Models.Response;
 
 public class ServiceLayerError
