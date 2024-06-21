@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Auth.Domain.Models.Api;
 
 namespace Auth.Models.Response;
 
