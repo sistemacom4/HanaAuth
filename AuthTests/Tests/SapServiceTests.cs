@@ -31,7 +31,7 @@ public class SapServiceTests
         // Arrange
         var email = "rafael.veronez@com4.com.br";
         var faker = new Faker<Employee>()
-            .RuleFor(e => e.eMail, email);
+            .RuleFor(e => e.EMail, email);
         var expectedEmployee = faker.Generate();
         var response = new ServiceLayerSuccess<List<Employee>>
         {
@@ -59,7 +59,7 @@ public class SapServiceTests
         // Arrange
         var email = "rafael.veronez@com4.com.br";
         var faker = new Faker<Employee>()
-            .RuleFor(e => e.eMail, email);
+            .RuleFor(e => e.EMail, email);
         var expectedEmployee = faker.Generate();
         var response = new ServiceLayerSuccess<List<Employee>>
         {

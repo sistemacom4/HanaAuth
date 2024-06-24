@@ -15,6 +15,7 @@ builder.Services.AddHttpClient("ServiceLayer", c =>
     c.BaseAddress = new Uri(builder.Configuration["ServiceUri:ServiceLayer"]);
 });
 
+builder.Services.AddSingleton<TokenManagementService>();
 builder.Services.AddScoped<ISapService, SapService>();
 
 var app = builder.Build();
