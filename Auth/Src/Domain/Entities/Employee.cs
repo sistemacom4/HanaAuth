@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Auth.Entities;
 
 public record Employee
@@ -27,7 +29,8 @@ public record Employee
     public string Pager { get; set; }
     public object HomePhone { get; set; }
     public object Fax { get; set; }
-    public string eMail { get; set; }
+    [JsonPropertyName("eMail")]
+    public string EMail { get; set; }
     public DateTime StartDate { get; set; }
     public object StatusCode { get; set; }
     public double Salary { get; set; }

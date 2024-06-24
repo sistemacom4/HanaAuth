@@ -20,4 +20,5 @@ RUN dotnet publish "Auth.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseA
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+ENV HANA_URL=https://com4-suse-sap-hana:50000/b1s/v1
 ENTRYPOINT ["dotnet", "Auth.dll"]
