@@ -4,5 +4,5 @@ namespace Application.Services.Interfaces;
 
 public interface IHanaAuthenticateService
 {
-    public Task Authenticate(AuthenticateHanaDTO data);
+    public Task<string> Authenticate(AuthenticateHanaDTO data);
 }

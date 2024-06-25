@@ -1,15 +1,17 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Application.DTOs;
 
-public record AuthenticateHanaDTO(string CompanyDb, string Password, string UserName)
+public record AuthenticateHanaDTO
 {
     [Required]
-    public string CompanyDb { get; } = CompanyDb;
+    [JsonPropertyName("CompanyDB")]
+    public string CompanyDB { get; init; }
 
-    [Required]
-    public string Password { get; } = Password;
+    [JsonPropertyName("Password")]
+    [Required] public string Password { get; init; }
 
-    [Required]
-    public string UserName { get; } = UserName;
-};
+    [JsonPropertyName("UserName")]
+    [Required] public string UserName { get; init; }
+}

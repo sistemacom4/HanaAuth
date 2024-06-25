@@ -8,26 +8,32 @@ namespace Application.Services;
 
 public class HanaAuthenticateService : IHanaAuthenticateService
 {
-    private const string ApiEndpoint = "/Login";
+    private const string ApiEndpoint = "/b1s/v1/Login";
     private readonly IHttpClientFactory _clientFactory;
+    private readonly HttpClient _httpClient;
     private readonly ITokenManagementService _tokenManagementService;
+    private readonly JsonSerializerOptions _options;
 
-    public HanaAuthenticateService(IHttpClientFactory clientFactory, ITokenManagementService tokenManagementService)
+
+    public HanaAuthenticateService(IHttpClientFactory clientFactory)
     {
-        _tokenManagementService = tokenManagementService;
         _clientFactory = clientFactory;
+        _httpClient = _clientFactory.CreateClient("ServiceLayer");
+        _options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
     }
 
-    public async Task Authenticate(AuthenticateHanaDTO data)
+    public async Task<string> Authenticate(AuthenticateHanaDTO data)
     {
-        var client = _clientFactory.CreateClient("ServiceLayer");
-
-        using (var response = await client.PostAsJsonAsync(ApiEndpoint, data))
+        
+        using (var response = await _httpClient.PostAsJsonAsync(ApiEndpoint, data, _options))
         {
             if (response.IsSuccessStatusCode)
             {
                 var resultData = await response.Content.ReadFromJsonAsync<HanaSessionDTO>();
-                _tokenManagementService.SetSessionToken(resultData.SessionId);
+                return resultData.SessionId;
             }
 
             var errorData = await response.Content.ReadFromJsonAsync<ServiceLayerResponse.Fail>();

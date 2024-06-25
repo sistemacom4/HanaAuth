@@ -2,10 +2,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTOs;
 
-public record LoginDTO(string Email, string Password)
+public record LoginDTO
 {
-    [Required] [EmailAddress] public string Email { get; } = Email;
+    [Required] [EmailAddress] public string Email { get; init; }
 
-    [Required] public string Password { get; } = Password;
+    [Required] public string Password { get; init; }
 
 };
