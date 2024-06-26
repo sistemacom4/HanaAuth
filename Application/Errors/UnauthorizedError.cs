@@ -4,11 +4,11 @@ namespace Application.Errors;
 
 public class UnauthorizedError: BaseError
 {
-    private UnauthorizedError(HttpStatusCode statusCode, string? description) : base(statusCode, description)
+    private UnauthorizedError(HttpStatusCode requestStatusCode, string? description) : base(requestStatusCode, description)
     {
     }
 
-    private UnauthorizedError(HttpStatusCode statusCode, string? description, Exception? innerException) : base(statusCode, description, innerException)
+    private UnauthorizedError(HttpStatusCode requestStatusCode, string? description, Exception? innerException) : base(requestStatusCode, description, innerException)
     {
     }
 

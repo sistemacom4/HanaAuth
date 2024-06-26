@@ -4,11 +4,11 @@ namespace Application.Errors;
 
 public sealed class ForbiddenError: BaseError
 {
-    private ForbiddenError(HttpStatusCode statusCode, string? description) : base(statusCode, description)
+    private ForbiddenError(HttpStatusCode requestStatusCode, string? description) : base(requestStatusCode, description)
     {
     }
 
-    private ForbiddenError(HttpStatusCode statusCode, string? description, Exception? innerException) : base(statusCode, description, innerException)
+    private ForbiddenError(HttpStatusCode requestStatusCode, string? description, Exception? innerException) : base(requestStatusCode, description, innerException)
     {
     }
 

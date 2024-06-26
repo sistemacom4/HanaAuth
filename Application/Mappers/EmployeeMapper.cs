@@ -7,11 +7,12 @@ public static class EmployeeMapper
 {
     public static EmployeeDTO ToDTO(Employee employee)
     {
-        return new EmployeeDTO(
-            employeeId: employee.EmployeeId,
-            firstName: employee.FirstName,
-            lastName: employee.LastName,
-            email: employee.eMail
-            );
+        return new EmployeeDTO
+        {
+            EmployeeId = employee.EmployeeId,
+            FirstName = employee.FirstName,
+            LastName = employee.LastName,
+            Email = employee.eMail
+        };
     }
 }

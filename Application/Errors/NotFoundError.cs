@@ -4,11 +4,11 @@ namespace Application.Errors;
 
 public sealed class NotFoundError: BaseError
 {
-    private NotFoundError(HttpStatusCode statusCode, string? description) : base(statusCode, description)
+    private NotFoundError(HttpStatusCode requestStatusCode, string? description) : base(requestStatusCode, description)
     {
     }
 
-    private NotFoundError(HttpStatusCode statusCode, string? description, Exception? innerException) : base(statusCode, description, innerException)
+    private NotFoundError(HttpStatusCode requestStatusCode, string? description, Exception? innerException) : base(requestStatusCode, description, innerException)
     {
     }
 

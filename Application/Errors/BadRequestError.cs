@@ -4,11 +4,11 @@ namespace Application.Errors;
 
 public sealed class BadRequestError: BaseError
 {
-    private BadRequestError(HttpStatusCode statusCode, string? description) : base(statusCode, description)
+    private BadRequestError(HttpStatusCode requestStatusCode, string? description) : base(requestStatusCode, description)
     {
     }
 
-    private BadRequestError(HttpStatusCode statusCode, string? description, Exception? innerException) : base(statusCode, description, innerException)
+    private BadRequestError(HttpStatusCode requestStatusCode, string? description, Exception? innerException) : base(requestStatusCode, description, innerException)
     {
     }
 

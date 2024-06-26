@@ -4,28 +4,29 @@ namespace Application.Errors;
 
 public abstract class BaseError : Exception
 {
-    protected HttpStatusCode StatusCode { get; }
-    protected string? Description { get; }
-    protected Exception? InnerException { get; }
+    private HttpStatusCode RequestStatusCode { get; }
+    private string? Description { get; }
+    private Exception? InnerException { get; }
 
-    protected BaseError(HttpStatusCode statusCode, string? description) : base(description)
+    protected BaseError(HttpStatusCode requestStatusCode, string? description) : base(description)
     {
-        StatusCode = statusCode;
+        RequestStatusCode = requestStatusCode;
         Description = description;
     }
 
-    protected BaseError(HttpStatusCode statusCode, string? description, Exception? innerException): base(description, innerException)
+    protected BaseError(HttpStatusCode requestStatusCode, string? description, Exception? innerException): base(description, innerException)
     {
-        StatusCode = statusCode;
+        RequestStatusCode = requestStatusCode;
         Description = description;
         InnerException = innerException;
     }
 
     public override string Message => Description ?? base.Message;
+    public HttpStatusCode StatusCode => RequestStatusCode;
 
     public void LogError()
     {
-        Console.WriteLine($"Error {StatusCode}: {Description}");
+        Console.WriteLine($"Error {RequestStatusCode}: {Description}");
         if (InnerException != null)
         {
             Console.WriteLine($"Inner Exception: {InnerException.Message}");

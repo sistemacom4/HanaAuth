@@ -1,4 +1,6 @@
+using System.Net;
 using Application.DTOs;
+using Application.Errors;
 using Application.Mappers;
 using Application.Usecases.Interfaces;
 using Domain.Interfaces;
@@ -17,6 +19,13 @@ public class GetEmployeeByEmailUsecase : IGetEmployeeByEmailUsecase
     public async Task<EmployeeDTO> Run(LoginDTO data)
     {
         var employee = await _repository.GetEmployeeByEmail(data.Email);
-        return EmployeeMapper.ToDTO(employee.First());
+
+        if (employee.Any())
+        {
+            return EmployeeMapper.ToDTO(employee.First());
+        }
+
+        throw NotFoundError.Build(HttpStatusCode.NotFound, "Nenhum registro encontrado");
+
     }
 }

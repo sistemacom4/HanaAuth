@@ -4,11 +4,11 @@ namespace Application.Errors;
 
 public sealed class InternalServerError: BaseError
 {
-    private InternalServerError(HttpStatusCode statusCode, string? description) : base(statusCode, description)
+    private InternalServerError(HttpStatusCode requestStatusCode, string? description) : base(requestStatusCode, description)
     {
     }
 
-    private InternalServerError(HttpStatusCode statusCode, string? description, Exception? innerException) : base(statusCode, description, innerException)
+    private InternalServerError(HttpStatusCode requestStatusCode, string? description, Exception? innerException) : base(requestStatusCode, description, innerException)
     {
     }
 

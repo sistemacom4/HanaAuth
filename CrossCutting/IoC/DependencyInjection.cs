@@ -30,7 +30,7 @@ public static class DependencyInjection
         services.AddScoped<IHanaAuthenticateService, HanaAuthenticateService>();
         services.AddScoped<IGetEmployeeByEmailUsecase, GetEmployeeByEmailUsecase>();
         services.AddScoped<IHanaAuthenticateUsecase, HanaAuthenticateUsecase>();
-
+        
         return services;
     }
 }
