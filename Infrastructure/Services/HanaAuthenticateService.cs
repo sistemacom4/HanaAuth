@@ -1,6 +1,8 @@
+using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
 using Application.DTOs;
+using Application.Errors;
 using Application.Models;
 using Application.Services.Interfaces;
 
@@ -37,7 +39,18 @@ public class HanaAuthenticateService : IHanaAuthenticateService
             }
 
             var errorData = await response.Content.ReadFromJsonAsync<ServiceLayerResponse.Fail>();
-            throw new Exception(errorData.Error.Message.Value);
+            
+            switch (response.StatusCode)
+            {
+                case HttpStatusCode.NotFound:
+                    throw NotFoundError.Build(response.StatusCode, errorData?.Error.Message.Value);
+                case HttpStatusCode.BadRequest:
+                    throw BadRequestError.Build(response.StatusCode, errorData?.Error.Message.Value);
+                default:
+                    throw InternalServerError.Build(response.StatusCode, errorData?.Error.Message.Value);
+            }
         }
+        
+        
     }
 }

@@ -1,18 +1,20 @@
-namespace Auth.Errors;
+using System.Net;
+
+namespace Application.Errors;
 
 public abstract class BaseError : Exception
 {
-    protected int StatusCode { get; }
+    protected HttpStatusCode StatusCode { get; }
     protected string? Description { get; }
     protected Exception? InnerException { get; }
 
-    protected BaseError(int statusCode, string? description) : base(description)
+    protected BaseError(HttpStatusCode statusCode, string? description) : base(description)
     {
         StatusCode = statusCode;
         Description = description;
     }
 
-    protected BaseError(int statusCode, string? description, Exception? innerException): base(description, innerException)
+    protected BaseError(HttpStatusCode statusCode, string? description, Exception? innerException): base(description, innerException)
     {
         StatusCode = statusCode;
         Description = description;

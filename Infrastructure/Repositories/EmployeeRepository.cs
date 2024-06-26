@@ -1,7 +1,9 @@
+using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
 using Application.Models;
 using Application.Services.Interfaces;
+using Application.Errors;
 using Domain.Entities;
 using Domain.Interfaces;
 
@@ -40,9 +42,26 @@ public class EmployeeRepository : IEmployeeRepository
                 return resultData.Value;
             }
 
-            //
             var errorData = await response.Content.ReadFromJsonAsync<ServiceLayerResponse.Fail>();
-            throw new Exception(message: errorData.Error.Message.Value);
+            
+            switch (response.StatusCode)
+            {
+                case HttpStatusCode.NotFound:
+                    throw NotFoundError.Build(response.StatusCode, errorData?.Error.Message.Value);
+                case HttpStatusCode.BadRequest:
+                    throw BadRequestError.Build(response.StatusCode, errorData?.Error.Message.Value);
+                case HttpStatusCode.Unauthorized:
+                    const int noSessionTokenCode = 301;
+                    if (errorData?.Error.Code == noSessionTokenCode)
+                    {
+                        throw UnauthorizedError.Build(HttpStatusCode.Forbidden, errorData.Error.Message.Value);
+                    }
+                    throw UnauthorizedError.Build(HttpStatusCode.Unauthorized, errorData.Error.Message.Value);
+                case HttpStatusCode.Forbidden:
+                    throw ForbiddenError.Build(response.StatusCode, errorData.Error.Message.Value);
+                default:
+                    throw InternalServerError.Build(response.StatusCode, errorData.Error.Message.Value);
+            }
         }
     }
 }
