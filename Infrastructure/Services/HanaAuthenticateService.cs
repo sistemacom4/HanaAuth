@@ -29,7 +29,6 @@ public class HanaAuthenticateService : IHanaAuthenticateService
 
     public async Task<string> Authenticate(AuthenticateHanaDTO data)
     {
-        
         using (var response = await _httpClient.PostAsJsonAsync(ApiEndpoint, data, _options))
         {
             if (response.IsSuccessStatusCode)
@@ -50,7 +49,5 @@ public class HanaAuthenticateService : IHanaAuthenticateService
                     throw InternalServerError.Build(response.StatusCode, errorData?.Error.Message.Value);
             }
         }
-        
-        
     }
 }

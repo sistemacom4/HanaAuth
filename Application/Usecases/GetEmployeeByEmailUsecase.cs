@@ -18,14 +18,20 @@ public class GetEmployeeByEmailUsecase : IGetEmployeeByEmailUsecase
 
     public async Task<EmployeeDTO> Run(LoginDTO data)
     {
-        var employee = await _repository.GetEmployeeByEmail(data.Email);
+        var employees = await _repository.GetEmployeeByEmail(data.Email);
 
-        if (employee.Any())
+        if (employees.Any())
         {
-            return EmployeeMapper.ToDTO(employee.First());
+            var employee = employees.First();
+            if (employee.Pager == data.Password)
+            {
+                return EmployeeMapper.ToDTO(employees.First());
+
+            }
+            throw UnauthorizedError.Build(HttpStatusCode.Unauthorized, "Credenciais incorretas!");
+
         }
 
-        throw NotFoundError.Build(HttpStatusCode.NotFound, "Nenhum registro encontrado");
-
+        throw NotFoundError.Build(HttpStatusCode.NotFound, "Nenhum usuario encontrado!");
     }
 }
