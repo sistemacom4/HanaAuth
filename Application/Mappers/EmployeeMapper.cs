@@ -12,7 +12,8 @@ public static class EmployeeMapper
             EmployeeId = employee.EmployeeId,
             FirstName = employee.FirstName,
             LastName = employee.LastName,
-            Email = employee.eMail
+            Email = employee.eMail,
+            Pager = employee.Pager
         };
     }
 }

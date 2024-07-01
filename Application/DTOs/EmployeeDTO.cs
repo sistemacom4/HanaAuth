@@ -16,4 +16,8 @@ public record EmployeeDTO
     [JsonPropertyName("eMail")]
     public string Email { get; init; }
     
+    [JsonPropertyName("Pager")]
+    public string Pager { get; init; }
+    
+    
 };

@@ -20,16 +20,9 @@ public class GetEmployeeByEmailUsecase : IGetEmployeeByEmailUsecase
     {
         var employees = await _repository.GetEmployeeByEmail(data.Email);
 
-        if (employees.Any())
+        if (employees.Any() && employees.First().eMail == data.Email)
         {
-            var employee = employees.First();
-            if (employee.Pager == data.Password)
-            {
-                return EmployeeMapper.ToDTO(employees.First());
-
-            }
-            throw UnauthorizedError.Build(HttpStatusCode.Unauthorized, "Credenciais incorretas!");
-
+            return EmployeeMapper.ToDTO(employees?.First());
         }
 
         throw NotFoundError.Build(HttpStatusCode.NotFound, "Nenhum usuario encontrado!");
