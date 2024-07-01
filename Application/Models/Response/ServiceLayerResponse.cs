@@ -21,5 +21,10 @@ public sealed class ServiceLayerResponse
     {
         [JsonPropertyName("error")]
         public Error Error { get; private set; }
+
+        public Fail(Error error)
+        {
+            Error = error;
+        }
     }
 }
