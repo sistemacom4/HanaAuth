@@ -1,5 +1,4 @@
 using System.Text;
-using Application.Services;
 using Application.Services.Interfaces;
 using Application.Usecases;
 using Application.Usecases.Interfaces;
@@ -31,12 +30,13 @@ public static class DependencyInjection
             .ConfigurePrimaryHttpMessageHandler(() => httpClientHandler);
         
         services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-        services.AddScoped<ITokenManagementService, TokenManagementService>();
+        services.AddSingleton<ITokenManagementService, TokenManagementService>();
         services.AddScoped<IHanaAuthenticateService, HanaAuthenticateService>();
         services.AddScoped<IJwtService, JwtService>();
         services.AddScoped<IGetEmployeeByEmailUsecase, GetEmployeeByEmailUsecase>();
         services.AddScoped<IHanaAuthenticateUsecase, HanaAuthenticateUsecase>();
         services.AddScoped<IAuthenticateUserUsecase, AuthenticateUserUsecase>();
+        services.AddScoped<ICheckHanaSessionValidUsecase, CheckHanaSessionValidUsecase>();
         
         return services;
     }

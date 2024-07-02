@@ -14,6 +14,7 @@ namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ServiceFilter(typeof(TokenFilter))]
     public class LoginController : ControllerBase
     {
         private readonly IGetEmployeeByEmailUsecase _employeeByEmailUsecase;
@@ -41,7 +42,6 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("login")]
-        [ServiceFilter(typeof(TokenFilter))]
         public async Task<IActionResult> SignIn(LoginDTO data)
         {
             try
@@ -68,7 +68,7 @@ namespace Api.Controllers
                     UserName = employee.FirstName,
                     Email = employee.Email,
                     AccessToken = new JwtSecurityTokenHandler().WriteToken(token),
-                    Expiration = token.ValidTo
+                    HanaSession = _tokenManagementService.GetSessionToken(),
                 });
             }
             catch (UnauthorizedError ex)
@@ -82,7 +82,7 @@ namespace Api.Controllers
         }
 
         [Authorize]
-        [HttpGet("TestToken")]
+        [HttpGet("CheckToken")]
         public IActionResult Test()
         {
             return Ok("Token success!");

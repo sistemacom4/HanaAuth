@@ -1,18 +1,17 @@
 using System.Net;
 using System.Net.Http.Json;
-using System.Text.Json;
 using Application.Errors;
 using Application.Models;
-using Application.Services;
 using Bogus;
 using Domain.Entities;
 using FluentAssertions;
+using HanaTests.Tools;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
-using InfrastructureTests.Tools;
 using Moq;
+using Message = Application.Models.Message;
 
-namespace InfrastructureTests;
+namespace Tests.InfrastructureTests;
 
 public class EmployeeRepositoryTests
 {

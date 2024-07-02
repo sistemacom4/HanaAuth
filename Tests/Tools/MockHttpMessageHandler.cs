@@ -1,10 +1,6 @@
 using System.Net;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
-using System;
 
-namespace InfrastructureTests.Tools
+namespace HanaTests.Tools
 {
     public class MockHttpMessageHandler : HttpMessageHandler
     {

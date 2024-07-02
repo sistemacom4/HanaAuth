@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossCutting", "CrossCuttin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{3E9B1918-D260-4034-88B3-B326B6E7B6A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfrastructureTests", "InfrastructureTests\InfrastructureTests.csproj", "{6EDB3509-4CCF-44C7-9F72-43D800C033C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{41D9DBA1-4274-4AB2-BA27-B2CEE5AD049F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,9 +38,9 @@ Global
 		{3E9B1918-D260-4034-88B3-B326B6E7B6A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E9B1918-D260-4034-88B3-B326B6E7B6A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E9B1918-D260-4034-88B3-B326B6E7B6A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6EDB3509-4CCF-44C7-9F72-43D800C033C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EDB3509-4CCF-44C7-9F72-43D800C033C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EDB3509-4CCF-44C7-9F72-43D800C033C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EDB3509-4CCF-44C7-9F72-43D800C033C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41D9DBA1-4274-4AB2-BA27-B2CEE5AD049F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41D9DBA1-4274-4AB2-BA27-B2CEE5AD049F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41D9DBA1-4274-4AB2-BA27-B2CEE5AD049F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41D9DBA1-4274-4AB2-BA27-B2CEE5AD049F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
