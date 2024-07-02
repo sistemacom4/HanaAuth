@@ -8,6 +8,7 @@ using Bogus;
 using Domain.Entities;
 using FluentAssertions;
 using Infrastructure.Repositories;
+using Infrastructure.Services;
 using InfrastructureTests.Tools;
 using Moq;
 

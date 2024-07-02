@@ -16,11 +16,11 @@ public class GetEmployeeByEmailUsecase : IGetEmployeeByEmailUsecase
         _repository = repository;
     }
 
-    public async Task<EmployeeDTO> Run(LoginDTO data)
+    public async Task<EmployeeDTO> Run(string email)
     {
-        var employees = await _repository.GetEmployeeByEmail(data.Email);
+        var employees = await _repository.GetEmployeeByEmail(email);
 
-        if (employees.Any() && employees.First().eMail == data.Email)
+        if (employees.Any() && employees.First().eMail == email)
         {
             return EmployeeMapper.ToDTO(employees?.First());
         }

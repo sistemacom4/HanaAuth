@@ -30,12 +30,13 @@ public static class DependencyInjection
             })
             .ConfigurePrimaryHttpMessageHandler(() => httpClientHandler);
         
-        services.AddScoped<ITokenManagementService, TokenManagementService>();
         services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+        services.AddScoped<ITokenManagementService, TokenManagementService>();
         services.AddScoped<IHanaAuthenticateService, HanaAuthenticateService>();
+        services.AddScoped<IJwtService, JwtService>();
         services.AddScoped<IGetEmployeeByEmailUsecase, GetEmployeeByEmailUsecase>();
         services.AddScoped<IHanaAuthenticateUsecase, HanaAuthenticateUsecase>();
-        services.AddScoped<IJwtService, JwtService>();
+        services.AddScoped<IAuthenticateUserUsecase, AuthenticateUserUsecase>();
         
         return services;
     }

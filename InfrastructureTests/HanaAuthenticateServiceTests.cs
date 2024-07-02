@@ -6,6 +6,7 @@ using Application.Errors;
 using Application.Models;
 using Application.Services;
 using FluentAssertions;
+using Infrastructure.Services;
 using InfrastructureTests.Tools;
 using Moq;
 using Xunit;

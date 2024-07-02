@@ -6,7 +6,7 @@ using Application.Errors;
 using Application.Models;
 using Application.Services.Interfaces;
 
-namespace Application.Services;
+namespace Infrastructure.Services;
 
 public class HanaAuthenticateService : IHanaAuthenticateService
 {
@@ -27,14 +27,14 @@ public class HanaAuthenticateService : IHanaAuthenticateService
         };
     }
 
-    public async Task<string> Authenticate(AuthenticateHanaDTO data)
+    public async Task<HanaSessionDTO> Authenticate(AuthenticateHanaDTO data)
     {
         using (var response = await _httpClient.PostAsJsonAsync(ApiEndpoint, data, _options))
         {
             if (response.IsSuccessStatusCode)
             {
                 var resultData = await response.Content.ReadFromJsonAsync<HanaSessionDTO>();
-                return resultData.SessionId;
+                return resultData;
             }
 
             var errorData = await response.Content.ReadFromJsonAsync<ServiceLayerResponse.Fail>();
