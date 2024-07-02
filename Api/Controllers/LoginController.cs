@@ -51,7 +51,8 @@ namespace Api.Controllers
 
                 if (!result)
                 {
-                    throw UnauthorizedError.Build(HttpStatusCode.Unauthorized, "Credenciais incorretas!");
+                    throw InvalidCredentialsError.Build(HttpStatusCode.Unauthorized,
+                        InvalidCredentialsError.DefaultMessage);
                 }
                 
                 var authClaims = new List<Claim>

@@ -32,7 +32,7 @@ public class EmployeeRepository : IEmployeeRepository
     public async Task<IEnumerable<Employee>> GetEmployeeByEmail(string email)
     {
         string queryFilter = $"$filter=eMail eq\'{email}\'&$top=1";
-        
+
         using (var response = await _httpClient.GetAsync($"{ApiEndpoint}?{queryFilter}"))
         {
             if (response.IsSuccessStatusCode)
@@ -43,7 +43,7 @@ public class EmployeeRepository : IEmployeeRepository
             }
 
             var errorData = await response.Content.ReadFromJsonAsync<ServiceLayerResponse.Fail>();
-            
+
             switch (response.StatusCode)
             {
                 case HttpStatusCode.NotFound:
@@ -54,7 +54,8 @@ public class EmployeeRepository : IEmployeeRepository
                     const int noSessionTokenCode = 301;
                     if (errorData?.Error.Code == noSessionTokenCode)
                     {
-                        throw UnauthorizedError.Build(HttpStatusCode.Forbidden, errorData.Error.Message.Value);
+                        throw InvalidHanaSessionError.Build(HttpStatusCode.Forbidden,
+                            InvalidHanaSessionError.DefaultMessage);
                     }
                     throw UnauthorizedError.Build(HttpStatusCode.Unauthorized, errorData.Error.Message.Value);
                 case HttpStatusCode.Forbidden:

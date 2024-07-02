@@ -25,6 +25,6 @@ public class GetEmployeeByEmailUsecase : IGetEmployeeByEmailUsecase
             return EmployeeMapper.ToDTO(employees?.First());
         }
 
-        throw NotFoundError.Build(HttpStatusCode.NotFound, "Nenhum usuario encontrado!");
+        throw EmployeeHasNotFoudError.Build(HttpStatusCode.NotFound, EmployeeHasNotFoudError.DefaultMessage);
     }
 }
