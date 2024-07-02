@@ -31,7 +31,7 @@ public class EmployeeRepository : IEmployeeRepository
 
     public async Task<IEnumerable<Employee>> GetEmployeeByEmail(string email)
     {
-        string queryFilter = $"$filter=eMail eq\'{email}\'&$top=1";
+        string queryFilter = $"$filter=eMail eq\'{email}\' and Active eq \'tYES\' &$top=1";
 
         using (var response = await _httpClient.GetAsync($"{ApiEndpoint}?{queryFilter}"))
         {

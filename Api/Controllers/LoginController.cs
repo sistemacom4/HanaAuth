@@ -2,7 +2,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Security.Claims;
 using Api.Filters;
-using Api.Models;
 using Application.DTOs;
 using Application.Errors;
 using Application.Services.Interfaces;
@@ -12,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     [ServiceFilter(typeof(TokenFilter))]
     public class LoginController : ControllerBase
@@ -40,8 +39,7 @@ namespace Api.Controllers
             _authenticateUserUsecase = authenticateUserUsecase;
         }
 
-        [HttpPost]
-        [Route("login")]
+        [HttpPost("login")]
         public async Task<IActionResult> SignIn(LoginDTO data)
         {
             try
@@ -82,7 +80,7 @@ namespace Api.Controllers
         }
 
         [Authorize]
-        [HttpGet("CheckToken")]
+        [HttpGet("check_token")]
         public IActionResult Test()
         {
             return Ok("Token success!");
