@@ -5,5 +5,5 @@ namespace Application.Usecases.Interfaces;
 
 public interface IGetEmployeeByEmailUsecase
 {
-    public Task<EmployeeDTO> Run(LoginDTO data);
+    public Task<EmployeeDTO> Run(string email);
 }

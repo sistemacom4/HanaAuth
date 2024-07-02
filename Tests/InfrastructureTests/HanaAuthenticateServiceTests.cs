@@ -1,16 +1,14 @@
 using System.Net;
 using System.Net.Http.Json;
-using System.Text.Json;
 using Application.DTOs;
 using Application.Errors;
 using Application.Models;
-using Application.Services;
 using FluentAssertions;
-using InfrastructureTests.Tools;
+using HanaTests.Tools;
+using Infrastructure.Services;
 using Moq;
-using Xunit;
 
-namespace InfrastructureTests;
+namespace Tests.InfrastructureTests;
 
 public class HanaAuthenticateServiceTests
 {

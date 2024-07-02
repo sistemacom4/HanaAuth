@@ -22,10 +22,13 @@ public class ApiExceptionFilter : IExceptionFilter
             case BadRequestError:
                 result.StatusCode = StatusCodes.Status400BadRequest;
                 break;
-            case NotFoundError:
+            case NotFoundError: 
+            case EmployeeHasNotFoudError:
                 result.StatusCode = StatusCodes.Status404NotFound;
                 break;
             case UnauthorizedError:
+            case InvalidCredentialsError:
+            case InvalidHanaSessionError:
                 result.StatusCode = StatusCodes.Status401Unauthorized;
                 break;
             case ForbiddenError:

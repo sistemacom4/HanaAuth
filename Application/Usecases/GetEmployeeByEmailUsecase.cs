@@ -16,22 +16,15 @@ public class GetEmployeeByEmailUsecase : IGetEmployeeByEmailUsecase
         _repository = repository;
     }
 
-    public async Task<EmployeeDTO> Run(LoginDTO data)
+    public async Task<EmployeeDTO> Run(string email)
     {
-        var employees = await _repository.GetEmployeeByEmail(data.Email);
+        var employees = await _repository.GetEmployeeByEmail(email);
 
-        if (employees.Any())
+        if (employees.Any() && employees.First().eMail == email)
         {
-            var employee = employees.First();
-            if (employee.Pager == data.Password)
-            {
-                return EmployeeMapper.ToDTO(employees.First());
-
-            }
-            throw UnauthorizedError.Build(HttpStatusCode.Unauthorized, "Credenciais incorretas!");
-
+            return EmployeeMapper.ToDTO(employees?.First());
         }
 
-        throw NotFoundError.Build(HttpStatusCode.NotFound, "Nenhum usuario encontrado!");
+        throw EmployeeHasNotFoudError.Build(HttpStatusCode.NotFound, EmployeeHasNotFoudError.DefaultMessage);
     }
 }
